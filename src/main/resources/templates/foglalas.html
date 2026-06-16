@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Foglalás</title>
+</head>
+<body>
+
+<h1>Foglalás</h1>
+
+<h3 th:text="${auto.marka + ' ' + auto.modell}"></h3>
+
+<p th:text="'Teljes ár: ' + ${teljesAr} + ' Ft'"></p>
+
+<form action="/foglalas" method="post">
+    <input type="hidden" name="autoId" th:value="${auto.id}">
+    <input type="hidden" name="datumtol" th:value="${datumtol}">
+    <input type="hidden" name="datumig" th:value="${datumig}">
+
+    <label>Név:</label>
+    <input type="text" name="nev"><br>
+
+    <label>Email:</label>
+    <input type="email" name="email"><br>
+
+    <label>Cím:</label>
+    <input type="text" name="cim">
+
+    <label>Telefon:</label>
+    <input type="text" name="telefon"><br>
+
+    <button type="submit">Foglalás véglekesítése</button>
+
+</form>
+
+</body>
+</html>

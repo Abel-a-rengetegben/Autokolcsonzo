@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Autók</title>
+</head>
+<body>
+
+<h1>Elérhető autók</h1>
+
+<div th:each="auto : ${autok}">
+    <div style="border: 1px solid black; padding: 10px; margin: 10px">
+        <h3 th:text="${auto.marka + ' ' + auto.modell}"></h3>
+
+        <p th:text="'Napi ár: ' + ${auto.napiAr} + ' Ft'"></p>
+        <a th:href="@{'/foglal/' + ${auto.id} + '?from= ' + ${datumtol} + '&to= ' + ${datumig}}">
+            Foglalás
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/foglalasok")
+@RequestMapping("/api/foglalasok")
 public class FoglalasController {
 
     private final FoglalasService foglalasService;

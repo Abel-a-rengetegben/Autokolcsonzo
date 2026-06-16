@@ -33,4 +33,9 @@ public class AutoService {
                         .isEmpty())
                 .toList();
     }
+
+    public Auto getAutoById(Long id) {
+        return autoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nem talált autó: " + id));
+    }
 }
