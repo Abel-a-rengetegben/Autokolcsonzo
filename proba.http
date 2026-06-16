@@ -1,0 +1,15 @@
+###
+POST localhost:8080/foglalasok
+Content-Type: application/json
+
+{
+  "autoId": 1,
+  "nev": "Kiss János",
+  "email": "janos@gmail.com",
+  "cim": "Szeged",
+  "telefon": "123456789",
+  "datumtol": "2026-06-20",
+  "datumig": "2026-06-22"
+}
+
+###
