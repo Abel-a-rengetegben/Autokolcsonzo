@@ -3,8 +3,10 @@ package hu.pelda.autokolcsonzo.controller;
 import hu.pelda.autokolcsonzo.model.Auto;
 import hu.pelda.autokolcsonzo.service.AutoService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -16,7 +18,13 @@ public class AutoController {
     }
 
     @GetMapping("/autok")
-    public List<Auto> getAutok() {
+    public List<Auto> getAutok(
+            @RequestParam(required = false)LocalDate datumtol,
+            @RequestParam(required = false)LocalDate datumig
+            ) {
+        if (datumtol != null && datumig != null) {
+            return autoService.getElerhetoAutok(datumtol, datumig);
+        }
         return autoService.getOsszesAuto();
     }
 }
