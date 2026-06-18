@@ -64,4 +64,17 @@ public class AdminController {
 
         return "redirect:/admin/autok";
     }
+
+    @GetMapping("/autok/uj")
+    public String ujAuto(Model model) {
+        model.addAttribute("auto", new  AutoFormDTO());
+
+        return "admin/auto-hozzaad";
+    }
+
+    @PostMapping("/autok/uj")
+    public String letrehoz(@ModelAttribute AutoFormDTO dto) {
+        autoService.createAuto(dto);
+        return "redirect:/admin/autok";
+    }
 }

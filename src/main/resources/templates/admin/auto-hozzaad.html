@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Autó hozzáadás</title>
+</head>
+<body>
+
+<h1>Autó hozzáadása</h1>
+
+<form action="/admin/autok/uj" method="post">
+
+    <div>
+        <label>Márka:</label>
+        <input type="text" name="marka" required>
+    </div>
+
+    <div>
+        <label>Modell:</label>
+        <input type="text" name="modell" required>
+    </div>
+
+    <div>
+        <label>Napi ár:</label>
+        <input type="number" name="napiAr" required>
+    </div>
+
+    <div>
+        <label>Aktív:</label>
+        <input type="checkbox" name="aktiv" checked>
+    </div>
+
+    <button type="submit">Létrehozás</button>
+
+</form>
+
+<br>
+
+<a href="/admin/autok">Vissza</a>
+
+</body>
+</html>

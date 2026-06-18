@@ -6,9 +6,11 @@
 </head>
 <body>
 
-<h1 th:text=" '#' + ${auto.id} + ' autó szerkesztése'"></h1>
+<h1 th:text=" ${'#' + auto.id + ' autó szerkesztése'}"></h1>
 
-<form th:object="${auto}" method="post">
+<form th:object="${auto}"
+      th:action="${'/admin/autok/' + auto.id + '/szerkeszt'}"
+      method="post">
     <label>
         <input type="text" th:field="*{marka}">
     </label>
@@ -23,6 +25,10 @@
     </label>
     <button type="submit">Mentés</button>
 </form>
+
+<br>
+
+<a href="/admin/autok">Vissza</a>
 
 </body>
 </html>

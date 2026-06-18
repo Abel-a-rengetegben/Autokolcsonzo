@@ -40,11 +40,21 @@ public class AutoService {
                 .orElseThrow(() -> new RuntimeException("Nem talált autó: " + id));
     }
 
-    public Auto updateAuto(Long id, AutoFormDTO dto) {
+    public void updateAuto(Long id, AutoFormDTO dto) {
         Auto auto = autoRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Nem található autó: + " + id));
 
+        auto.setMarka(dto.getMarka());
+        auto.setModell(dto.getModell());
+        auto.setNapiAr(dto.getNapiAr());
+        auto.setAktiv(dto.isAktiv());
+
+        autoRepository.save(auto);
+    }
+
+    public Auto createAuto(AutoFormDTO dto) {
+        Auto auto = new Auto();
         auto.setMarka(dto.getMarka());
         auto.setModell(dto.getModell());
         auto.setNapiAr(dto.getNapiAr());
