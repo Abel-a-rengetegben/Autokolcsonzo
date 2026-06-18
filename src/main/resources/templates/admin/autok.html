@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Autók</title>
+</head>
+<body>
+
+<a href="/admin/autok/uj">Új autó</a>
+
+<table>
+    <tr th:each="auto : ${autok}">
+        <td th:text="${auto.marka}"></td>
+        <td th:text="${auto.modell}"></td>
+        <td>
+            <a th:href="@{/admin/autok/{id}/szerkeszt(id=${auto.id})}">
+                Szerkesztés
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

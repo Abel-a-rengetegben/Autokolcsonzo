@@ -1,6 +1,7 @@
 package hu.pelda.autokolcsonzo.controller;
 
 import hu.pelda.autokolcsonzo.model.Foglalas;
+import hu.pelda.autokolcsonzo.service.AutoService;
 import hu.pelda.autokolcsonzo.service.FoglalasService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final FoglalasService foglalasService;
+    private final AutoService autoService;
 
-    public AdminController(FoglalasService foglalasService) {
+    public AdminController(FoglalasService foglalasService, AutoService autoService) {
         this.foglalasService = foglalasService;
+        this.autoService = autoService;
     }
 
     @GetMapping
@@ -29,5 +32,14 @@ public class AdminController {
         );
 
         return "admin/foglalasok";
+    }
+
+    @GetMapping("/autok")
+    public String autok(Model model) {
+        model.addAttribute(
+                "autok",
+                autoService.getOsszesAuto()
+        );
+        return "admin/autok";
     }
 }
