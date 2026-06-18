@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Foglalások</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>Név</th>
+        <th>Autó</th>
+        <th>Dátumtól</th>
+        <th>Dátumig</th>
+    </tr>
+
+    <tr th:each="f : ${foglalasok}">
+        <td th:text="${f.nev}"></td>
+        <td th:text="${f.auto.marka + ' ' + f.auto.modell}"></td>
+        <td th:text="${f.datumtol}"></td>
+        <td th:text="${f.datumig}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ import hu.pelda.autokolcsonzo.repository.FoglalasRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 public class FoglalasService {
@@ -46,5 +47,9 @@ public class FoglalasService {
         foglalas.setTeljesAr(teljesAr);
 
         return foglalasRepository.save(foglalas);
+    }
+
+    public List<Foglalas> getOsszesFoglalas() {
+        return  foglalasRepository.findAll();
     }
 }
