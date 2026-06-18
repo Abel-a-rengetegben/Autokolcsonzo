@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Autó szerkesztése</title>
+</head>
+<body>
+
+<h1 th:text=" '#' + ${auto.id} + ' autó szerkesztése'"></h1>
+
+<form th:object="${auto}" method="post">
+    <label>
+        <input type="text" th:field="*{marka}">
+    </label>
+    <label>
+        <input type="text" th:field="*{modell}">
+    </label>
+    <label>
+        <input type="number" th:field="*{napiAr}">
+    </label>
+    <label>
+        <input type="checkbox" th:field="*{aktiv}">
+    </label>
+    <button type="submit">Mentés</button>
+</form>
+
+</body>
+</html>

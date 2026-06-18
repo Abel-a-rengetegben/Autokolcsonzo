@@ -1,12 +1,12 @@
 package hu.pelda.autokolcsonzo.controller;
 
+import hu.pelda.autokolcsonzo.dto.AutoFormDTO;
 import hu.pelda.autokolcsonzo.model.Foglalas;
 import hu.pelda.autokolcsonzo.service.AutoService;
 import hu.pelda.autokolcsonzo.service.FoglalasService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -41,5 +41,27 @@ public class AdminController {
                 autoService.getOsszesAuto()
         );
         return "admin/autok";
+    }
+
+    @GetMapping("/autok/{id}/szerkeszt")
+    public String szerkeszt(@PathVariable Long id,
+                            Model model
+
+    ) {
+        model.addAttribute(
+                "auto",
+                autoService.getAutoById(id)
+        );
+        return "admin/auto-form";
+    }
+
+    @PostMapping("/autok/{id}/szerkeszt")
+    public String mentes(
+            @PathVariable Long id,
+            @ModelAttribute AutoFormDTO dto
+    ) {
+        autoService.updateAuto(id, dto);
+
+        return "redirect:/admin/autok";
     }
 }

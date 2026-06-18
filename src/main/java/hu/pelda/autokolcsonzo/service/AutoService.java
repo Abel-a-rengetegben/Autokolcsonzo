@@ -1,5 +1,6 @@
 package hu.pelda.autokolcsonzo.service;
 
+import hu.pelda.autokolcsonzo.dto.AutoFormDTO;
 import hu.pelda.autokolcsonzo.model.Auto;
 import hu.pelda.autokolcsonzo.repository.AutoRepository;
 import hu.pelda.autokolcsonzo.repository.FoglalasRepository;
@@ -37,5 +38,18 @@ public class AutoService {
     public Auto getAutoById(Long id) {
         return autoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Nem talált autó: " + id));
+    }
+
+    public Auto updateAuto(Long id, AutoFormDTO dto) {
+        Auto auto = autoRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Nem található autó: + " + id));
+
+        auto.setMarka(dto.getMarka());
+        auto.setModell(dto.getModell());
+        auto.setNapiAr(dto.getNapiAr());
+        auto.setAktiv(dto.isAktiv());
+
+        return autoRepository.save(auto);
     }
 }
