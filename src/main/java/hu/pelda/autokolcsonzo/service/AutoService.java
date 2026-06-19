@@ -4,13 +4,23 @@ import hu.pelda.autokolcsonzo.dto.AutoFormDTO;
 import hu.pelda.autokolcsonzo.model.Auto;
 import hu.pelda.autokolcsonzo.repository.AutoRepository;
 import hu.pelda.autokolcsonzo.repository.FoglalasRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AutoService {
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     private final AutoRepository autoRepository;
     private final FoglalasRepository foglalasRepository;
@@ -50,16 +60,47 @@ public class AutoService {
         auto.setNapiAr(dto.getNapiAr());
         auto.setAktiv(dto.isAktiv());
 
+        if (dto.getKep() != null && !dto.getKep().isEmpty()) {
+            kepFeltoltes(dto.getKep(), auto);
+        }
+
         autoRepository.save(auto);
     }
 
-    public Auto createAuto(AutoFormDTO dto) {
+    public void createAuto(AutoFormDTO dto) {
         Auto auto = new Auto();
         auto.setMarka(dto.getMarka());
         auto.setModell(dto.getModell());
         auto.setNapiAr(dto.getNapiAr());
         auto.setAktiv(dto.isAktiv());
 
-        return autoRepository.save(auto);
+        kepFeltoltes(dto.getKep(), auto);
+
+        autoRepository.save(auto);
+    }
+
+    private void kepFeltoltes(MultipartFile file, Auto auto) {
+        if (file == null ||file.isEmpty()) {
+            return;
+        }
+
+        try {
+
+            if (auto.getKepNev() != null){
+                Files.deleteIfExists(Paths.get(uploadDir, auto.getKepNev()));
+            }
+
+            Path uploadDirPath = Paths.get(uploadDir);
+            Files.createDirectories(uploadDirPath);
+
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+            Path filePath = uploadDirPath.resolve(fileName);
+            Files.copy(file.getInputStream(),filePath);
+
+            auto.setKepNev(fileName);
+        } catch (IOException e) {
+            throw new RuntimeException("Kép feltöltése sikertelen", e);
+        }
     }
 }

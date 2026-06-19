@@ -10,6 +10,14 @@
 
 <div th:each="auto : ${autok}">
     <div style="border: 1px solid black; padding: 10px; margin: 10px">
+        <img th:if="${auto.kepNev != null}"
+             th:src="@{'/uploads/' + ${auto.kepNev}}"
+             width="200">
+
+        <img th:if="${auto.kepNev == null}"
+             th:src="@{/images/no-image.png}"
+             width="200">
+
         <h3 th:text="${auto.marka + ' ' + auto.modell}"></h3>
 
         <p th:text="'Napi ár: ' + ${auto.napiAr} + ' Ft'"></p>

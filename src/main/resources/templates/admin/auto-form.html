@@ -10,6 +10,7 @@
 
 <form th:object="${auto}"
       th:action="${'/admin/autok/' + auto.id + '/szerkeszt'}"
+      enctype="multipart/form-data"
       method="post">
     <label>
         <input type="text" th:field="*{marka}">
@@ -23,6 +24,12 @@
     <label>
         <input type="checkbox" th:field="*{aktiv}">
     </label>
+    <div th:if="${auto.kepNev != null}">
+        <img th:src="|/uploads/${auto.kepNev}|" alt="kep"
+             width="200">
+    </div>
+
+    <input type="file" name="kep">
     <button type="submit">Mentés</button>
 </form>
 

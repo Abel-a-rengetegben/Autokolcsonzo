@@ -8,7 +8,7 @@
 
 <h1>Autó hozzáadása</h1>
 
-<form action="/admin/autok/uj" method="post">
+<form action="/admin/autok/uj" method="post" enctype="multipart/form-data">
 
     <div>
         <label>Márka:</label>
@@ -28,6 +28,11 @@
     <div>
         <label>Aktív:</label>
         <input type="checkbox" name="aktiv" checked>
+    </div>
+
+    <div>
+        <label>Kép:</label>
+        <input type="file" name="kep" checked>
     </div>
 
     <button type="submit">Létrehozás</button>

@@ -16,6 +16,6 @@ public class Auto {
     private String marka;
     private String modell;
     private int napiAr;
-    private String kepURL;
+    private String kepNev;
     private boolean aktiv = true;
 }

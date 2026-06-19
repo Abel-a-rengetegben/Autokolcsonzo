@@ -17,14 +17,14 @@ public class DataLoader {
                 auto1.setMarka("Toyota");
                 auto1.setModell("Supra");
                 auto1.setNapiAr(20000);
-                auto1.setKepURL("toyota.jpg");
+                auto1.setKepNev("toyota.jpg");
                 auto1.setAktiv(true);
 
                 Auto auto2 = new Auto();
                 auto2.setMarka("Bugatti");
                 auto2.setModell("Veyron");
                 auto2.setNapiAr(200000);
-                auto2.setKepURL("bugatti.jpg");
+                auto2.setKepNev("bugatti.jpg");
                 auto2.setAktiv(true);
 
                 autoRepository.save(auto1);
