@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Autók</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <h1>Elérhető autók</h1>
 
 <div th:each="auto : ${autok}">
-    <div style="border: 1px solid black; padding: 10px; margin: 10px">
+    <div class="card">
         <img th:if="${auto.kepNev != null}"
              th:src="@{'/uploads/' + ${auto.kepNev}}"
              width="200">

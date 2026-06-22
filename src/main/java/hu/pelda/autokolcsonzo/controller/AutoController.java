@@ -3,11 +3,9 @@ package hu.pelda.autokolcsonzo.controller;
 
 import hu.pelda.autokolcsonzo.model.Auto;
 import hu.pelda.autokolcsonzo.service.AutoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -25,7 +23,15 @@ public class AutoController {
         return autoService.getOsszesAuto();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/elerheto")
+    public List<Auto> getElerhetoAutok(
+            @RequestParam LocalDate datumtol,
+            @RequestParam LocalDate datumig
+    ) {
+        return autoService.getElerhetoAutok(datumtol, datumig);
+    }
+
+    @GetMapping("/{id:\\d+}")
     public Auto getAuto(@PathVariable Long id) {
         return autoService.getAutoById(id);
     }

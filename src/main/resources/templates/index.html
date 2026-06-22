@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Autókölcsönző</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -10,13 +11,25 @@
 
 <form action="/autok" method="get">
     <label>Dátumtól:</label>
-    <input type="date" name="datumtol">
+    <input type="date" name="datumtol" id="datumtol">
 
     <label>Dátumig:</label>
-    <input type="date" name="datumig">
+    <input type="date" name="datumig" id="datumig">
 
     <button type="submit">Keresés</button>
 </form>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const datumtol = document.getElementById("datumtol").value;
+        const datumig = document.getElementById("datumig").value;
+
+        if (datumtol && datumig && datumtol > datumig){
+            alert("A kezdő dátum nem lehet a későbbi!");
+            e.preventDefault();
+        }
+    });
+</script>
 
 </body>
 </html>

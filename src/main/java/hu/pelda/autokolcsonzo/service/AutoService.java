@@ -37,6 +37,10 @@ public class AutoService {
     public List<Auto> getElerhetoAutok(LocalDate datumtol, LocalDate datumig) {
         List<Auto> autok = autoRepository.findAll();
 
+        if (datumtol.isAfter(datumig)) {
+            throw new IllegalArgumentException("Hibás dátumtartomány");
+        }
+
         return autok.stream()
                 .filter(Auto::isAktiv)
                 .filter(auto -> foglalasRepository
