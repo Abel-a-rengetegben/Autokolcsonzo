@@ -62,7 +62,7 @@ public class AutoService {
         auto.setMarka(dto.getMarka());
         auto.setModell(dto.getModell());
         auto.setNapiAr(dto.getNapiAr());
-        auto.setAktiv(dto.isAktiv());
+        auto.setAktiv(dto.isAktiv()); // a foglalás nem törlődik autó deaktiváláskor, csak inaktív lesz az autó
 
         if (dto.getKep() != null && !dto.getKep().isEmpty()) {
             kepFeltoltes(dto.getKep(), auto);

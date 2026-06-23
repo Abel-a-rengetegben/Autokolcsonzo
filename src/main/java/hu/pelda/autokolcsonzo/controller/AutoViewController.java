@@ -52,6 +52,7 @@ public class AutoViewController {
     ) {
         Auto auto = autoService.getAutoById(autoId);
 
+        // +1 nap, mert mind a kezdő, mind a záró nap számít
         long napok = ChronoUnit.DAYS.between(datumtol, datumig) + 1;
         int teljesAr = (int) (napok * auto.getNapiAr());
 
